@@ -23,7 +23,13 @@ let package = Package(
                 .product(name: "Addition", package: "swift-addition"),
             ]
         ),
-        .testTarget(name: "Advancement Tests", dependencies: ["Advancement"]),
+        .testTarget(
+            name: "Advancement Tests",
+            dependencies: [
+                .target(name: "Advancement"),
+                .product(name: "Addition", package: "swift-addition"),
+            ]
+        ),
     ],
     swiftLanguageModes: [.v6]
 )

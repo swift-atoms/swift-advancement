@@ -1,7 +1,9 @@
 public import Addition
 
 /// The identity and fixed-width integer kernel for forward movement by a count.
-public enum Advancement {
+public enum Advancement {}
+
+extension Advancement {
 
     @inlinable
     public static func reporting<Value: FixedWidthInteger>(
