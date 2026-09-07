@@ -1,6 +1,6 @@
 public import Addition
 
-/// The identity and fixed-width integer kernel for forward movement by a count.
+
 public enum Advancement {}
 
 extension Advancement {
