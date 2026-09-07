@@ -9,6 +9,9 @@ let package = Package(
     ],
     products: [
         .library(name: "Advancement", targets: ["Advancement"]),
+        .library(name: "Advancement Standard Library Integration", targets: ["Advancement Standard Library Integration"]),
+        .library(name: "Advancement Foundation Library Integration", targets: ["Advancement Foundation Library Integration"]),
+        .library(name: "Advancement Test Support", targets: ["Advancement Test Support"]),
     ],
     dependencies: [
         .package(
@@ -21,21 +24,48 @@ let package = Package(
             name: "Advancement",
             dependencies: [
                 .product(name: "Addition", package: "swift-addition"),
-            ]
+            ],
+            path: "Sources/Advancement"
+        ),
+        .target(
+            name: "Advancement Standard Library Integration",
+            dependencies: [
+                .target(name: "Advancement"),
+            ],
+            path: "Sources/Advancement Standard Library Integration"
+        ),
+        .target(
+            name: "Advancement Foundation Library Integration",
+            dependencies: [
+                .target(name: "Advancement"),
+                .target(name: "Advancement Standard Library Integration"),
+            ],
+            path: "Sources/Advancement Foundation Library Integration"
+        ),
+        .target(
+            name: "Advancement Test Support",
+            dependencies: [
+                .target(name: "Advancement"),
+            ],
+            path: "Tests/Support"
         ),
         .testTarget(
             name: "Advancement Tests",
             dependencies: [
                 .target(name: "Advancement"),
                 .product(name: "Addition", package: "swift-addition"),
-            ]
+                .target(name: "Advancement Test Support"),
+                .target(name: "Advancement Standard Library Integration"),
+                .target(name: "Advancement Foundation Library Integration"),
+            ],
+            path: "Tests/Advancement Tests"
         ),
     ],
     swiftLanguageModes: [.v6]
 )
 
-for target in package.targets where ![.system, .binary, .plugin, .macro].contains(target.type) {
-    target.swiftSettings = (target.swiftSettings ?? []) + [
+for target in package.targets {
+    target.swiftSettings = [
         .strictMemorySafety(),
         .enableUpcomingFeature("ExistentialAny"),
         .enableUpcomingFeature("InternalImportsByDefault"),
