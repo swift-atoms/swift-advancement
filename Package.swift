@@ -9,8 +9,8 @@ let package = Package(
     ],
     products: [
         .library(name: "Advancement", targets: ["Advancement"]),
-        .library(name: "Advancement Standard Library Integration", targets: ["Advancement Standard Library Integration"]),
-        .library(name: "Advancement Foundation Library Integration", targets: ["Advancement Foundation Library Integration"]),
+
+        .library(name: "Advancement Foundation Integration", targets: ["Advancement Foundation Integration"]),
         .library(name: "Advancement Test Support", targets: ["Advancement Test Support"]),
     ],
     dependencies: [
@@ -27,20 +27,13 @@ let package = Package(
             ],
             path: "Sources/Advancement"
         ),
+        
         .target(
-            name: "Advancement Standard Library Integration",
+            name: "Advancement Foundation Integration",
             dependencies: [
                 .target(name: "Advancement"),
             ],
-            path: "Sources/Advancement Standard Library Integration"
-        ),
-        .target(
-            name: "Advancement Foundation Library Integration",
-            dependencies: [
-                .target(name: "Advancement"),
-                .target(name: "Advancement Standard Library Integration"),
-            ],
-            path: "Sources/Advancement Foundation Library Integration"
+            path: "Sources/Advancement Foundation Integration"
         ),
         .target(
             name: "Advancement Test Support",
@@ -55,8 +48,7 @@ let package = Package(
                 .target(name: "Advancement"),
                 .product(name: "Addition", package: "swift-addition"),
                 .target(name: "Advancement Test Support"),
-                .target(name: "Advancement Standard Library Integration"),
-                .target(name: "Advancement Foundation Library Integration"),
+                .target(name: "Advancement Foundation Integration"),
             ],
             path: "Tests/Advancement Tests"
         ),
