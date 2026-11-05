@@ -1,6 +1,6 @@
 # swift-advancement
 
-Use this package when you move a fixed-width integer position by a count (an index stepped forward, an offset advanced) and must decide what happens when the move leaves the type's range: wrap and report it, fail, or clamp. Start from `Advancement`. When the two operands are symmetric summands rather than a position and a count, use the sibling `Addition` directly.
+Use this package when you move a fixed-width integer position by a count (an index stepped forward, an offset advanced) and must decide what happens when the move leaves the type's range: wrap and report it, fail, or clamp. Start from `Advancement`. When the two operands are symmetric summands rather than a position and a count, use `Addition` from the sibling package swift-addition directly.
 
 ## Laws
 
